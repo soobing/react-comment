@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import CommentsPage from './pages/comments';
 ReactDOM.render(
-  <div>hello World</div>,
+  <CommentsPage />,
   document.getElementById('root')
 )
