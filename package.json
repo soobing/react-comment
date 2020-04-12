@@ -1,4 +1,5 @@
 {
+  "homepage": "https://soobing.github.io/react-comment/",
   "name": "react-comment",
   "version": "1.0.0",
   "description": "facebook 댓글 기능 구현",
@@ -6,7 +7,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -23,8 +26,8 @@
   "bugs": {
     "url": "https://github.com/soobing/react-comment/issues"
   },
-  "homepage": "https://github.com/soobing/react-comment#readme",
   "dependencies": {
+    "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   },
