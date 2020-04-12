@@ -12,7 +12,7 @@ export default function commentsPage() {
     <p>{String(comments.isTest)}</p>
     {
       data.map((item) => {
-        return <Comment value={item.value} onChange={(e) =>
+        return <Comment key={item.id} value={item.value} onChange={(e) =>
           dispatch({
             type: types.COMMENT_SET_VALUE, data: {
               id: item.id,
