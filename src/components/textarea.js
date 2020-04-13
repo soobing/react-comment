@@ -8,15 +8,17 @@ export default function textarea({ createComment }) {
   return <textarea className='default-comment'
     placeholder='댓글을 입력하세요..'
     onKeyDown={(e) => {
-      if (e.keyCode == 13) {
-        if (!e.shiftKey) {
-          createComment(e.target.value);
-          e.target.value = ''
-          e.stopPropagation();
-        }
-      } else {
-        onResize(e);
+      if (e.keyCode == 13 && !e.shiftKey) {
+        console.log('높이이이', e.target.style.height)
+        createComment(e.target.value);
+        e.target.value = '';
+        e.preventDefault();
+        e.stopPropagation();
       }
-    }} onKeyUp={onResize} />
+      onResize(e)
+    }}
+    onKeyUp={e => {
+      onResize(e);
+    }} />
 
 }
