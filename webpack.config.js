@@ -10,7 +10,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: path.resolve("./dist"),
-    publicPath: './'
+    publicPath: '/'
   },
   devServer: {
     historyApiFallback: true,
