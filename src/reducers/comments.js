@@ -54,10 +54,6 @@ const comments = (state = initialState, action) => {
           ...state.data,
           {
             ...action.data,
-            id: Symbol(),
-            like: false,
-            likeCount: 0,
-            reply: []
           }
         ]
       }

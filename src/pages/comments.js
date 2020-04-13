@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from '../components/comment';
+import TextArea from '../components/textarea';
 import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 
@@ -9,35 +10,25 @@ export default function commentsPage() {
   const dispatch = useDispatch();
 
 
-  const createComment = (parentId, value) => {
+  const createComment = (value) => {
     dispatch({
       type: types.COMMENT_CREATE, data: {
+        id: Symbol(),
         value: value,
-        createdAt: new Date()
+        like: false,
+        likeCount: 0,
+        parentId: null,
+        createdAt: new Date(),
+        reply: []
       }
     })
   }
-  const onResize = (e) => {
-    e.target.style.height = "1px";
-    e.target.style.height = (e.target.scrollHeight) + "px";
-  }
+
 
   return <div>
     <h1>Comments Page</h1>
 
-    <textarea className='default-comment'
-      placeholder='댓글을 입력하세요..'
-      onKeyDown={(e) => {
-        if (e.keyCode == 13) {
-          if (!e.shiftKey) {
-            createComment(null, e.target.value);
-            e.target.value = ' '
-            e.stopPropagation();
-          }
-        } else {
-          onResize(e);
-        }
-      }} onKeyUp={onResize} />
+    <TextArea createComment={createComment} />
     {
       data.map((item, index) => {
         return <Comment key={index} item={item}
