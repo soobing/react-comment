@@ -8,6 +8,7 @@ const initialState = {
       like: false,
       likeCount: 0,
       parentId: null,
+      createdAt: '',
       reply: []
     },
     {
@@ -16,6 +17,7 @@ const initialState = {
       like: false,
       likeCount: 0,
       parentId: null,
+      createdAt: '',
       reply: []
     },
     {
@@ -24,6 +26,7 @@ const initialState = {
       like: false,
       likeCount: 0,
       parentId: null,
+      createdAt: '',
       reply: []
     }
   ]
@@ -42,6 +45,28 @@ const comments = (state = initialState, action) => {
             [action.data.key]: action.data.value
           },
           ...state.data.slice(action.data.id + 1, action.data.length)
+        ]
+      }
+    case types.COMMENT_CREATE:
+      return {
+        ...state,
+        data: [
+          ...state.data,
+          {
+            ...action.data,
+            id: state.data.length,
+            like: false,
+            likeCount: 0,
+            reply: []
+          }
+        ]
+      }
+    case types.COMMENT_DELETE:
+      return {
+        ...state,
+        data: [
+          ...state.data.slice(0, action.data.index),
+          ...state.data.slice(action.data.index + 1, action.data.length)
         ]
       }
     default:
