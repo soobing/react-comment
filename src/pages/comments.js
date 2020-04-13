@@ -25,13 +25,10 @@ export default function commentsPage() {
   }
 
   const map = new Map();
+  map.set('root', [])
   data.forEach((item, index) => {
     if (item.parentId === null) {
-      if (map.get('root') === undefined) {
-        map.set('root', [item])
-      } else {
-        map.get('root').push(item)
-      }
+      map.get('root').push(item)
     } else {
       if (map.get(item.parentId) === undefined) {
         map.set(item.parentId, [item]);
