@@ -2,7 +2,7 @@ import React from 'react';
 import Comment from '../components/comment';
 import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
-
+import './style.css'
 export default function commentsPage() {
   const { comments } = useSelector(state => state);
   const { data } = comments;
