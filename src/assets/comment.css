@@ -4,7 +4,7 @@
   border-radius: 8px;
   background-color: #f2f3f5;
   border: 1px solid #ccd0d5;
-  margin: 8px 12px;
+  margin: 8px 12px 0px;
   width: calc(100% - 24px);
   padding: 8px 12px;
   box-sizing: border-box;
@@ -17,7 +17,7 @@
   flex-direction: column;
   background: yellow;
   font-size: 10px;
-  margin: 50px 20px;
+  margin: 10px 20px;
 }
 
 .comment textarea {
