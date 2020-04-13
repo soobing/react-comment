@@ -10,20 +10,6 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
 
   const dispatch = useDispatch();
-  const createComment = (value, height) => {
-
-    dispatch({
-      type: types.COMMENT_CREATE,
-      data: {
-        id: new Date().valueOf(),
-        value: value,
-        like: false,
-        likeCount: 0,
-        parentId: item.id,
-        height: height
-      }
-    })
-  }
 
   return <div className='comment'>
     <textarea className='default-comment'
@@ -43,7 +29,24 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
     <div>
       {
         showReplyTextarea ?
-          <TextArea createComment={createComment} />
+          <TextArea onKeyDown={(e) => {
+            if (e.keyCode == 13 && !e.shiftKey) {
+              dispatch({
+                type: types.COMMENT_CREATE,
+                data: {
+                  id: new Date().valueOf(),
+                  value: e.target.value,
+                  like: false,
+                  likeCount: 0,
+                  parentId: item.id,
+                  height: e.target.style.height
+                }
+              })
+              e.target.value = '';
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }} />
           : null
       }
 
