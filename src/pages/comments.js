@@ -39,7 +39,7 @@ export default function commentsPage() {
   })
   console.log('map', map)
   return <div className='wrapper'>
-    <img className='post' src={postImg} />
+    {/* <img className='post' src={postImg} /> */}
     <TextArea createComment={createComment} />
     {
       map.get('root').map((item, index) => {
