@@ -11,3 +11,8 @@ body {
 .post {
   width: 100%;
 }
+
+.footer {
+  height: 50px;
+  background: white;
+}

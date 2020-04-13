@@ -56,6 +56,7 @@ export default function commentsPage() {
             }
           })
           e.target.value = '';
+          window.scrollTo(0, document.body.scrollHeight);
           e.preventDefault();
           e.stopPropagation();
         }
@@ -85,5 +86,7 @@ export default function commentsPage() {
           }} />
       })
     }
+    <div className='footer'>
+    </div>
   </div>
 }
