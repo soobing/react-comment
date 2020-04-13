@@ -58,7 +58,6 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
                   }
                 })
                 e.target.value = '';
-                e.target.scrollIntoView();
                 e.preventDefault();
                 e.stopPropagation();
               }
