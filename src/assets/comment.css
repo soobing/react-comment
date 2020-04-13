@@ -27,6 +27,6 @@
   text-decoration: underline;
   cursor: pointer;
 }
-.comment div :nth-of-type(1) {
-  margin-right: 30px;
+.comment div :nth-of-type(2) {
+  margin: 0px 15px;
 }

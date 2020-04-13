@@ -3,7 +3,7 @@ import * as types from '../actions'
 const initialState = {
   data: [
     {
-      id: 0,
+      id: Symbol(),
       value: '',
       like: false,
       likeCount: 0,
@@ -12,7 +12,7 @@ const initialState = {
       reply: []
     },
     {
-      id: 1,
+      id: Symbol(),
       value: '1번 커멘트',
       like: false,
       likeCount: 0,
@@ -21,7 +21,7 @@ const initialState = {
       reply: []
     },
     {
-      id: 2,
+      id: Symbol(),
       value: '2번 커멘트',
       like: false,
       likeCount: 0,
@@ -39,12 +39,12 @@ const comments = (state = initialState, action) => {
       return {
         ...state,
         data: [
-          ...state.data.slice(0, action.data.id),
+          ...state.data.slice(0, action.data.index),
           {
-            ...state.data[action.data.id],
+            ...state.data[action.data.index],
             [action.data.key]: action.data.value
           },
-          ...state.data.slice(action.data.id + 1, action.data.length)
+          ...state.data.slice(action.data.index + 1, action.data.length)
         ]
       }
     case types.COMMENT_CREATE:
@@ -54,7 +54,7 @@ const comments = (state = initialState, action) => {
           ...state.data,
           {
             ...action.data,
-            id: state.data.length,
+            id: Symbol(),
             like: false,
             likeCount: 0,
             reply: []

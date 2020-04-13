@@ -40,12 +40,12 @@ export default function commentsPage() {
       }} onKeyUp={onResize} />
     {
       data.map((item, index) => {
-        return <Comment key={item.id} item={item}
+        return <Comment key={index} item={item}
           onChangeValue={(e) =>
             dispatch({
               type: types.COMMENT_SET_VALUE,
               data: {
-                id: item.id,
+                index: index,
                 key: 'value',
                 value: e.target.value
               }
