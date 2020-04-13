@@ -2,17 +2,24 @@ import React from 'react';
 import Comment from '../components/comment';
 import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
-import './style.css'
 export default function commentsPage() {
   const { comments } = useSelector(state => state);
   const { data } = comments;
   const dispatch = useDispatch();
+
+  const onResize = (e) => {
+    e.target.style.height = "1px";
+    e.target.style.height = (e.target.scrollHeight) + "px";
+  }
   return <div>
-    <h1 onClick={() => dispatch({ type: types.APP_ACTION_TEST, data: !comments.isTest })}>Comments Page</h1>
-    <p>{String(comments.isTest)}</p>
+    <h1>Comments Page</h1>
+
+    <textarea className='default-comment'
+      placeholder='댓글을 입력하세요..'
+      onKeyDown={onResize} onKeyUp={onResize} />
     {
       data.map((item) => {
-        return <Comment key={item.id} value={item.value} onChange={(e) =>
+        return <Comment key={item.id} item={item} onChangeValue={(e) =>
           dispatch({
             type: types.COMMENT_SET_VALUE, data: {
               id: item.id,

@@ -1,0 +1,32 @@
+.default-comment {
+  font-size: 14px;
+  height: 21px;
+  border-radius: 8px;
+  
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+  background: yellow;
+  font-size: 10px;
+  margin: 50px 20px;
+}
+
+.comment textarea {
+  width: 100%;
+}
+.comment div {
+  display: flex;
+  flex-direction: row;
+}
+.comment div > div {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.comment div :nth-of-type(1) {
+  margin-right: 30px;
+}
