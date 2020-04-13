@@ -24,7 +24,18 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
       reply.length > 0 ? <div>답글 {reply.length}개</div> : null
     }
     {
-      reply.map((item, index) => <p key={index}>{item.value}</p>)
+      reply.map((item, index) => <TextArea key={index}
+        item={item}
+        onChange={(e) =>
+          dispatch({
+            type: types.COMMENT_SET_VALUE,
+            data: {
+              id: item.id,
+              key: 'value',
+              value: e.target.value
+            }
+          })}
+        value={item.value} />)
     }
     <div>
       {
