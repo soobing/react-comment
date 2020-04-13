@@ -3,7 +3,7 @@ import Comment from '../components/comment';
 import TextArea from '../components/textarea';
 import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
-
+import postImg from '../assets/images/post.png'
 import '../assets/style.css'
 export default function commentsPage() {
   const { comments } = useSelector(state => state);
@@ -42,7 +42,7 @@ export default function commentsPage() {
   })
   console.log('map', map)
   return <div className='wrapper'>
-    <h1>Comments Page</h1>
+    <img className='post' src={postImg} />
     <TextArea createComment={createComment} />
     {
       map.get('root').map((item, index) => {

@@ -1,5 +1,12 @@
+body {
+  background: #e9ebee;
+}
 .wrapper {
   max-width: 500px;
-  background: red;
+  background: white;
+  box-sizing: border-box;
   margin: auto;
+}
+.post {
+  width: 100%;
 }
