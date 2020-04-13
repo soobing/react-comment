@@ -20,27 +20,30 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
       <div onClick={() => setShowReplyTextarea(true)}>답글달기</div>
       <div onClick={onClickDelete}>삭제</div>
     </div>
-    {
-      reply.length > 0 ? <div>답글 {reply.length}개</div> : null
-    }
-    {
-      reply.map((item, index) => <TextArea key={index}
-        item={item}
-        onChange={(e) =>
-          dispatch({
-            type: types.COMMENT_SET_VALUE,
-            data: {
-              id: item.id,
-              key: 'value',
-              value: e.target.value
-            }
-          })}
-        value={item.value} />)
-    }
     <div>
+      {
+        reply.length > 0 ? `답글 ${reply.length}개` : ''
+      }
+    </div>
+    <div>
+      {
+        reply.map((item, index) => <TextArea key={index}
+          item={item}
+          onChange={(e) =>
+            dispatch({
+              type: types.COMMENT_SET_VALUE,
+              data: {
+                id: item.id,
+                key: 'value',
+                value: e.target.value
+              }
+            })}
+          value={item.value} />)
+      }
       {
         showReplyTextarea ?
           <TextArea item={null}
+            autoFocus={true}
             onKeyDown={(e) => {
               if (e.keyCode == 13 && !e.shiftKey) {
                 dispatch({

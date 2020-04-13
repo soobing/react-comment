@@ -40,7 +40,7 @@ export default function commentsPage() {
   })
   console.log('map', map)
   return <div className='wrapper'>
-    {/* <img className='post' src={postImg} /> */}
+    <img className='post' src={postImg} />
     <TextArea item={null}
       onKeyDown={(e) => {
         if (e.keyCode == 13 && !e.shiftKey) {
