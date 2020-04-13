@@ -3,6 +3,7 @@ body {
 }
 .wrapper {
   max-width: 500px;
+  height: 100%;
   background: white;
   box-sizing: border-box;
   margin: auto;

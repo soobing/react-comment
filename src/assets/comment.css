@@ -1,15 +1,20 @@
 .default-comment {
   font-size: 14px;
-  height: 21px;
+  height: 31px;
   border-radius: 8px;
-  
+  background-color: #f2f3f5;
+  border: 1px solid #ccd0d5;
+  margin: 8px 12px;
+  width: calc(100% - 24px);
+  padding: 8px 12px;
+  box-sizing: border-box;
+  line-height: 16px;
+  resize: none; 
 }
 
 .comment {
   display: flex;
   flex-direction: column;
-  border: 1px solid gainsboro;
-  border-radius: 8px;
   background: yellow;
   font-size: 10px;
   margin: 50px 20px;
