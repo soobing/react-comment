@@ -10,7 +10,7 @@ export default function textarea({ createComment }) {
     onKeyDown={(e) => {
       if (e.keyCode == 13 && !e.shiftKey) {
         console.log('높이이이', e.target.style.height)
-        createComment(e.target.value);
+        createComment(e.target.value, e.target.style.height);
         e.target.value = '';
         e.preventDefault();
         e.stopPropagation();

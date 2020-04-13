@@ -10,7 +10,7 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
 
   const dispatch = useDispatch();
-  const createComment = (value) => {
+  const createComment = (value, height) => {
 
     dispatch({
       type: types.COMMENT_CREATE,
@@ -19,14 +19,16 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
         value: value,
         like: false,
         likeCount: 0,
-        parentId: item.id
+        parentId: item.id,
+        height: height
       }
     })
   }
 
   return <div className='comment'>
-    <textarea onChange={onChangeValue} value={item.value}>
-    </textarea>
+    <textarea className='default-comment'
+      style={item.height ? { height: item.height } : {}}
+      onChange={onChangeValue} value={item.value} />
     <div>
       <div>좋아요</div>
       <div onClick={() => setShowReplyTextarea(true)}>답글달기</div>

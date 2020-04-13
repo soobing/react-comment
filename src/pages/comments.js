@@ -11,7 +11,7 @@ export default function commentsPage() {
   const dispatch = useDispatch();
 
 
-  const createComment = (value) => {
+  const createComment = (value, height) => {
     dispatch({
       type: types.COMMENT_CREATE,
       data: {
@@ -19,7 +19,8 @@ export default function commentsPage() {
         value: value,
         like: false,
         likeCount: 0,
-        parentId: null
+        parentId: null,
+        height: height
       }
     })
   }
