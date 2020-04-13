@@ -41,24 +41,25 @@ export default function commentsPage() {
   console.log('map', map)
   return <div className='wrapper'>
     {/* <img className='post' src={postImg} /> */}
-    <TextArea onKeyDown={(e) => {
-      if (e.keyCode == 13 && !e.shiftKey) {
-        dispatch({
-          type: types.COMMENT_CREATE,
-          data: {
-            id: new Date().valueOf(),
-            value: e.target.value,
-            like: false,
-            likeCount: 0,
-            parentId: null,
-            height: e.target.style.height
-          }
-        })
-        e.target.value = '';
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    }} />
+    <TextArea item={null}
+      onKeyDown={(e) => {
+        if (e.keyCode == 13 && !e.shiftKey) {
+          dispatch({
+            type: types.COMMENT_CREATE,
+            data: {
+              id: new Date().valueOf(),
+              value: e.target.value,
+              like: false,
+              likeCount: 0,
+              parentId: null,
+              height: e.target.style.height
+            }
+          })
+          e.target.value = '';
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }} />
     {
       map.get('root').map((item, index) => {
         return <Comment key={index}

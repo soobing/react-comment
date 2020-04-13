@@ -13,7 +13,7 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
 
   return <div className='comment'>
     <TextArea
-      style={item.height ? { height: item.height } : {}}
+      item={item}
       onChange={onChangeValue} value={item.value} />
     <div>
       <div>좋아요</div>
@@ -29,24 +29,25 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
     <div>
       {
         showReplyTextarea ?
-          <TextArea onKeyDown={(e) => {
-            if (e.keyCode == 13 && !e.shiftKey) {
-              dispatch({
-                type: types.COMMENT_CREATE,
-                data: {
-                  id: new Date().valueOf(),
-                  value: e.target.value,
-                  like: false,
-                  likeCount: 0,
-                  parentId: item.id,
-                  height: e.target.style.height
-                }
-              })
-              e.target.value = '';
-              e.preventDefault();
-              e.stopPropagation();
-            }
-          }} />
+          <TextArea item={null}
+            onKeyDown={(e) => {
+              if (e.keyCode == 13 && !e.shiftKey) {
+                dispatch({
+                  type: types.COMMENT_CREATE,
+                  data: {
+                    id: new Date().valueOf(),
+                    value: e.target.value,
+                    like: false,
+                    likeCount: 0,
+                    parentId: item.id,
+                    height: e.target.style.height
+                  }
+                })
+                e.target.value = '';
+                e.preventDefault();
+                e.stopPropagation();
+              }
+            }} />
           : null
       }
 
