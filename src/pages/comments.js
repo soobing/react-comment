@@ -4,6 +4,7 @@ import TextArea from '../components/textarea';
 import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 
+import '../assets/style.css'
 export default function commentsPage() {
   const { comments } = useSelector(state => state);
   const { data } = comments;
@@ -40,13 +41,13 @@ export default function commentsPage() {
     }
   })
   console.log('map', map)
-  return <div>
+  return <div className='wrapper'>
     <h1>Comments Page</h1>
-
     <TextArea createComment={createComment} />
     {
       map.get('root').map((item, index) => {
-        return <Comment key={index} item={item}
+        return <Comment key={index}
+          item={item}
           reply={map.get(item.id) === undefined ? [] : map.get(item.id)}
           onChangeValue={(e) =>
             dispatch({
