@@ -6,7 +6,7 @@ import TextArea from '../components/textarea';
 
 import '../assets/comment.css'
 
-export default function comment({ item, onChangeValue, onClickDelete }) {
+export default function comment({ item, reply, onChangeValue, onClickDelete }) {
   const [showReplyTextarea, setShowReplyTextarea] = useState(false);
 
   const dispatch = useDispatch();
@@ -15,12 +15,11 @@ export default function comment({ item, onChangeValue, onClickDelete }) {
     dispatch({
       type: types.COMMENT_CREATE,
       data: {
-        id: Symbol(),
+        id: new Date().valueOf(),
         value: value,
         like: false,
         likeCount: 0,
         parentId: item.id,
-        createdAt: new Date(),
         reply: []
       }
     })
@@ -35,7 +34,10 @@ export default function comment({ item, onChangeValue, onClickDelete }) {
       <div onClick={onClickDelete}>삭제</div>
     </div>
     {
-      item.reply.length > 0 ? <div>답글 {item.reply.length}개</div> : null
+      reply.length > 0 ? <div>답글 {reply.length}개</div> : null
+    }
+    {
+      reply.map((item, index) => <p key={index}>{item.value}</p>)
     }
     <div>
       {

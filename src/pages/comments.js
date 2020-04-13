@@ -13,25 +13,41 @@ export default function commentsPage() {
   const createComment = (value) => {
     dispatch({
       type: types.COMMENT_CREATE, data: {
-        id: Symbol(),
+        id: new Date().valueOf(),
         value: value,
         like: false,
         likeCount: 0,
         parentId: null,
-        createdAt: new Date(),
         reply: []
       }
     })
   }
 
-
+  const map = new Map();
+  data.forEach((item, index) => {
+    if (item.parentId === null) {
+      if (map.get('root') === undefined) {
+        map.set('root', [item])
+      } else {
+        map.get('root').push(item)
+      }
+    } else {
+      if (map.get(item.parentId) === undefined) {
+        map.set(item.parentId, [item]);
+      } else {
+        map.get(item.parentId).push(item)
+      }
+    }
+  })
+  console.log('map', map)
   return <div>
     <h1>Comments Page</h1>
 
     <TextArea createComment={createComment} />
     {
-      data.map((item, index) => {
+      map.get('root').map((item, index) => {
         return <Comment key={index} item={item}
+          reply={map.get(item.id) === undefined ? [] : map.get(item.id)}
           onChangeValue={(e) =>
             dispatch({
               type: types.COMMENT_SET_VALUE,
