@@ -19,8 +19,7 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
         value: value,
         like: false,
         likeCount: 0,
-        parentId: item.id,
-        reply: []
+        parentId: item.id
       }
     })
   }

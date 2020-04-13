@@ -13,13 +13,13 @@ export default function commentsPage() {
 
   const createComment = (value) => {
     dispatch({
-      type: types.COMMENT_CREATE, data: {
+      type: types.COMMENT_CREATE,
+      data: {
         id: new Date().valueOf(),
         value: value,
         like: false,
         likeCount: 0,
-        parentId: null,
-        reply: []
+        parentId: null
       }
     })
   }

@@ -7,24 +7,21 @@ const initialState = {
       value: '',
       like: false,
       likeCount: 0,
-      parentId: null,
-      reply: []
+      parentId: null
     },
     {
       id: new Date().valueOf() + 1,
       value: '1번 커멘트',
       like: false,
       likeCount: 0,
-      parentId: null,
-      reply: []
+      parentId: null
     },
     {
       id: new Date().valueOf() + 2,
       value: '2번 커멘트',
       like: false,
       likeCount: 0,
-      parentId: null,
-      reply: []
+      parentId: null
     }
   ]
 }
