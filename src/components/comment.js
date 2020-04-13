@@ -12,7 +12,7 @@ export default function comment({ item, reply, onChangeValue, onClickDelete }) {
   const dispatch = useDispatch();
 
   return <div className='comment'>
-    <textarea className='default-comment'
+    <TextArea
       style={item.height ? { height: item.height } : {}}
       onChange={onChangeValue} value={item.value} />
     <div>

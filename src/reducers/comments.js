@@ -35,14 +35,16 @@ const comments = (state = initialState, action) => {
     case types.COMMENT_SET_VALUE:
       return {
         ...state,
-        data: [
-          ...state.data.slice(0, action.data.index),
-          {
-            ...state.data[action.data.index],
-            [action.data.key]: action.data.value
-          },
-          ...state.data.slice(action.data.index + 1, action.data.length)
-        ]
+        data: state.data.map(item => {
+          if (item.id === action.data.id) {
+            return {
+              ...item,
+              [action.data.key]: action.data.value
+            }
+          } else {
+            return item;
+          }
+        })
       }
     case types.COMMENT_CREATE:
       return {

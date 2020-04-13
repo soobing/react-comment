@@ -68,7 +68,7 @@ export default function commentsPage() {
             dispatch({
               type: types.COMMENT_SET_VALUE,
               data: {
-                index: index,
+                id: item.id,
                 key: 'value',
                 value: e.target.value
               }
