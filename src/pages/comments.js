@@ -61,11 +61,10 @@ export default function commentsPage() {
               }
             })}
           onClickDelete={(e) => {
-            console.log(item.id)
             dispatch({
               type: types.COMMENT_DELETE,
               data: {
-                index: index
+                id: item.id
               }
             })
           }} />
