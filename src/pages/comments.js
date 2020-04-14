@@ -10,21 +10,6 @@ export default function commentsPage() {
   const { data } = comments;
   const dispatch = useDispatch();
 
-
-  const createComment = (value, height) => {
-    dispatch({
-      type: types.COMMENT_CREATE,
-      data: {
-        id: new Date().valueOf(),
-        value: value,
-        like: false,
-        likeCount: 0,
-        parentId: null,
-        height: height
-      }
-    })
-  }
-
   const map = new Map();
   map.set('root', [])
   data.forEach((item, index) => {
