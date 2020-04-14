@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 import postImg from '../assets/images/post.png'
 import '../assets/style.css'
+import Orange from '../components/orange';
+
 export default function commentsPage() {
   const { comments } = useSelector(state => state);
   const { data } = comments;
@@ -46,6 +48,27 @@ export default function commentsPage() {
           e.stopPropagation();
         }
       }} />
+      ------------------------
+      {
+      map.get('root').map((item, index) => {
+        return <div key={index}>
+          <Orange item={item} replyCallback={() => console.log('답글달기 콜백')} />
+          {
+            map.get(item.id) && <div>답글 {map.get(item.id).length}개</div>
+          }
+          <div className='child-comment'>
+            {
+              map.get(item.id) &&
+              map.get(item.id)
+                .map((child, index) => <Orange key={'child_' + index}
+                  item={child}
+                  replyCallback={null} />)
+            }
+          </div>
+        </div>
+      })
+    }
+      -------------------------
     {
       map.get('root').map((item, index) => {
         return <Comment key={index}

@@ -16,3 +16,7 @@ body {
   height: 50px;
   background: white;
 }
+
+.child-comment {
+  margin-left: 25px;
+}
