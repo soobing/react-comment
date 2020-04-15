@@ -26,15 +26,18 @@ export default function commentsPage() {
     }
   })
 
-  const replyCallback = (id) => {
+  const setValue = (id, key, value) => {
     dispatch({
       type: types.COMMENT_SET_VALUE,
       data: {
         id: id,
-        key: 'showReplyTextarea',
-        value: true
+        key: key,
+        value: value
       }
     })
+  }
+  const replyCallback = (id) => {
+    setValue(id, 'showReplyTextarea', true)
     const replyEl = document.getElementById('reply-' + id);
     replyEl && replyEl.focus();
   }
@@ -46,15 +49,9 @@ export default function commentsPage() {
           dispatch({
             type: types.COMMENT_CREATE,
             data: {
-              id: new Date().valueOf(),
               value: e.target.value,
-              like: false,
-              likeCount: 0,
               parentId: null,
               height: e.target.style.height,
-              isEdit: false,
-              showMore: false,
-              showReplyTextarea: false
             }
           })
           e.target.value = '';
@@ -87,26 +84,13 @@ export default function commentsPage() {
                   autoFocus={true}
                   onKeyDown={(e) => {
                     if (e.keyCode == 13 && !e.shiftKey) {
-                      dispatch({
-                        type: types.COMMENT_SET_VALUE,
-                        data: {
-                          id: item.id,
-                          key: 'showReplyTextarea',
-                          value: false
-                        }
-                      })
+                      setValue(item.id, 'showReplyTextarea', false);
                       dispatch({
                         type: types.COMMENT_CREATE,
                         data: {
-                          id: new Date().valueOf(),
                           value: e.target.value,
-                          like: false,
-                          likeCount: 0,
                           parentId: item.id,
                           height: e.target.style.height,
-                          isEdit: false,
-                          showMore: false,
-                          showReplyTextarea: false
                         }
                       })
                       e.target.value = '';

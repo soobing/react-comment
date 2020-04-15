@@ -39,7 +39,15 @@ const comments = (state = initialState, action) => {
         data: [
           ...state.data,
           {
-            ...action.data,
+            id: new Date().valueOf(),
+            value: action.data.value,
+            like: false,
+            likeCount: 0,
+            parentId: action.data.parentId,
+            height: action.data.height,
+            isEdit: false,
+            showMore: false,
+            showReplyTextarea: false
           }
         ]
       }
