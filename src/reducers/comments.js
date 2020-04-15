@@ -4,34 +4,15 @@ const initialState = {
   data: [
     {
       id: new Date().valueOf(),
-      value: '',
+      value: '우와 예쁘다',
       like: false,
       likeCount: 0,
       parentId: null,
       height: '31px',
       isEdit: false,
-      showMore: false
+      showMore: false,
+      showReplyTextarea: false
     },
-    {
-      id: new Date().valueOf() + 1,
-      value: '1번 커멘트',
-      like: false,
-      likeCount: 0,
-      parentId: null,
-      height: '31px',
-      isEdit: false,
-      showMore: false
-    },
-    {
-      id: new Date().valueOf() + 2,
-      value: '2번 커멘트',
-      like: false,
-      likeCount: 0,
-      parentId: null,
-      height: '31px',
-      isEdit: false,
-      showMore: false
-    }
   ]
 }
 

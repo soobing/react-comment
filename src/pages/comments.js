@@ -26,13 +26,17 @@ export default function commentsPage() {
     }
   })
 
-  const [showReplyTextarea, setShowReplyTextarea] = useState([...Array(map.get('root').length).fill(false)]);
-  const replyCallback = (rootIndex) => {
-    setShowReplyTextarea(showReplyTextarea.map((flag, idx) => {
-      if (idx === rootIndex) return true;
-      else return flag
-    }))
-    document.getElementById('reply-' + rootIndex).focus();
+  const replyCallback = (id) => {
+    dispatch({
+      type: types.COMMENT_SET_VALUE,
+      data: {
+        id: id,
+        key: 'showReplyTextarea',
+        value: true
+      }
+    })
+    const replyEl = document.getElementById('reply-' + id);
+    replyEl && replyEl.focus();
   }
   return <div className='wrapper'>
     <img className='post' src={postImg} />
@@ -47,7 +51,10 @@ export default function commentsPage() {
               like: false,
               likeCount: 0,
               parentId: null,
-              height: e.target.style.height
+              height: e.target.style.height,
+              isEdit: false,
+              showMore: false,
+              showReplyTextarea: false
             }
           })
           e.target.value = '';
@@ -59,7 +66,8 @@ export default function commentsPage() {
     {
       map.get('root').map((item, index) => {
         return <div key={index}>
-          <Comment item={item} replyCallback={() => replyCallback(index)} />
+          <Comment item={item}
+            replyCallback={() => replyCallback(item.id)} />
           <div className='child-comment'>
             {
               map.get(item.id) && <div className='count'><img src={curveArrow} alt='답글' />답글 {map.get(item.id).length}개</div>
@@ -69,20 +77,24 @@ export default function commentsPage() {
               map.get(item.id)
                 .map((child, childIndex) => <Comment key={'child_' + childIndex}
                   item={child}
-                  replyCallback={() => replyCallback(index)} />)
+                  replyCallback={() => { replyCallback(child.parentId) }} />)
             }
             {
-              showReplyTextarea[index] ?
+              item.showReplyTextarea ?
                 <TextArea
-                  id={'reply-' + index}
+                  id={'reply-' + item.id}
                   item={null}
                   autoFocus={true}
                   onKeyDown={(e) => {
                     if (e.keyCode == 13 && !e.shiftKey) {
-                      setShowReplyTextarea(showReplyTextarea.map((flag, idx) => {
-                        if (idx === index) return !flag;
-                        else return flag
-                      }))
+                      dispatch({
+                        type: types.COMMENT_SET_VALUE,
+                        data: {
+                          id: item.id,
+                          key: 'showReplyTextarea',
+                          value: false
+                        }
+                      })
                       dispatch({
                         type: types.COMMENT_CREATE,
                         data: {
@@ -91,7 +103,10 @@ export default function commentsPage() {
                           like: false,
                           likeCount: 0,
                           parentId: item.id,
-                          height: e.target.style.height
+                          height: e.target.style.height,
+                          isEdit: false,
+                          showMore: false,
+                          showReplyTextarea: false
                         }
                       })
                       e.target.value = '';
