@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 
 import TextArea from '../components/textarea';
-import '../assets/comment.css'
 import more from '../assets/images/more.png'
 export default function comment({ replyCallback, item }) {
   const [showMore, setShowMore] = useState(false);
@@ -59,7 +58,7 @@ export default function comment({ replyCallback, item }) {
           e.stopPropagation();
         }
       }} />
-    <div>
+    <div className='comment-function'>
       <div>좋아요</div>
       {replyCallback && <div onClick={replyCallback}>답글달기</div>}
       <div className='more-wrapper'>
