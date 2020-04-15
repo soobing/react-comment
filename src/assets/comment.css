@@ -45,3 +45,35 @@
 .comment > div:nth-of-type(3) > textarea {
   /* background: gold; */
 }
+
+.more-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.more-wrapper img{
+  width: 15px;
+}
+.more-wrapper .more-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  font-size: 14px;
+  width: 100px;
+  height: 60px;
+  background: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.06);
+  top: 15px;
+  left: -30px;
+  border-radius: 8px;
+  cursor: default;
+}
+.more-wrapper .more-modal > div {
+  cursor: pointer;
+}
+.more-wrapper .more-modal > div:hover {
+  background: #e0dede;
+}

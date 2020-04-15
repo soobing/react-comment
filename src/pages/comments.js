@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 import postImg from '../assets/images/post.png'
 import '../assets/style.css'
-import Orange from '../components/orange';
 
 export default function commentsPage() {
   const { comments } = useSelector(state => state);
