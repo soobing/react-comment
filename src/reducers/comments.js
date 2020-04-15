@@ -9,7 +9,8 @@ const initialState = {
       likeCount: 0,
       parentId: null,
       height: '31px',
-      isEdit: false
+      isEdit: false,
+      showMore: false
     },
     {
       id: new Date().valueOf() + 1,
@@ -18,7 +19,8 @@ const initialState = {
       likeCount: 0,
       parentId: null,
       height: '31px',
-      isEdit: false
+      isEdit: false,
+      showMore: false
     },
     {
       id: new Date().valueOf() + 2,
@@ -27,7 +29,8 @@ const initialState = {
       likeCount: 0,
       parentId: null,
       height: '31px',
-      isEdit: false
+      isEdit: false,
+      showMore: false
     }
   ]
 }
@@ -64,6 +67,33 @@ const comments = (state = initialState, action) => {
         ...state,
         data: state.data.filter(item => item.id !== action.data.id &&
           item.parentId !== action.data.id)
+      }
+    case types.COMMENT_SHOWMORE_ITEM:
+      return {
+        ...state,
+        data: state.data.map(item => {
+          if (item.id === action.data.id) {
+            return {
+              ...item,
+              showMore: action.data.showMore
+            }
+          } else {
+            return {
+              ...item,
+              showMore: false
+            }
+          }
+        })
+      }
+    case types.COMMENT_SHOWMORE_HIDEALL:
+      return {
+        ...state,
+        data: state.data.map(item => {
+          return {
+            ...item,
+            showMore: false
+          }
+        })
       }
     default:
       return state;

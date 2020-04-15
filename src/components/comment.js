@@ -7,11 +7,13 @@ import more from '../assets/images/more.png';
 import like from '../assets/images/like.png';
 
 export default function comment({ replyCallback, item }) {
-  const [showMore, setShowMore] = useState(false);
   const dispatch = useDispatch();
   const onWindowClick = (event) => {
     if (!event.target.classList.contains('more')) {
-      setShowMore(false)
+      dispatch({
+        type: types.COMMENT_SHOWMORE_HIDEALL,
+        data: {}
+      })
     }
   }
   const setValue = (key, value) => {
@@ -75,9 +77,16 @@ export default function comment({ replyCallback, item }) {
       }}>좋아요</div>
       {replyCallback && <div onClick={replyCallback}>답글달기</div>}
       <div className='more-wrapper'>
-        <img src={more} alt='more' className='more' onClick={(e) => setShowMore(!showMore)} />
+        <img src={more} alt='more' className='more'
+          onClick={(e) => dispatch({
+            type: types.COMMENT_SHOWMORE_ITEM,
+            data: {
+              id: item.id,
+              showMore: !item.showMore
+            }
+          })} />
         {
-          showMore ?
+          item.showMore ?
             <div className='more-modal'>
               <div onClick={() => {
                 document.getElementById(item.id).focus();
