@@ -62,9 +62,27 @@ body {
   align-items: center;
   color: #407fff;
 }
+@keyframes scale {
+  0%   {transform: scale(1.4);}
+  70%  {transform: scale(0.8);}
+  100% {transform: scale(1);}
+}
+@keyframes rotate {
+  0%   {transform: rotate(20deg);}
+  25%  {transform: rotate(-10deg);}
+  50%  {transform: rotate(10deg);}
+  100% {transform: rotate(0deg);}
+}
+
 .comment-like > img {
   width: 15px;
   margin-right: 5px;
+  animation-name: scale;
+  animation-duration: 0.5s;
+}
+.comment-like > span {
+  animation-name: rotate;
+  animation-duration: 0.5s;
 }
 .comment > .comment-function {
   display: flex;
