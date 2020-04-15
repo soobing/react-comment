@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Comment from '../components/comment';
 import TextArea from '../components/textarea';
 import { useDispatch, useSelector } from 'react-redux';
