@@ -76,6 +76,10 @@ export default function commentsPage() {
                   autoFocus={true}
                   onKeyDown={(e) => {
                     if (e.keyCode == 13 && !e.shiftKey) {
+                      setShowReplyTextarea(showReplyTextarea.map((flag, idx) => {
+                        if (idx === index) return !flag;
+                        else return flag
+                      }))
                       dispatch({
                         type: types.COMMENT_CREATE,
                         data: {

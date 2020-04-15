@@ -94,7 +94,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
+  padding: 20px 10px;
   box-sizing: border-box;
   font-size: 14px;
   width: 100px;
@@ -109,6 +109,7 @@ body {
 }
 .more-wrapper .more-modal > div {
   cursor: pointer;
+  text-align: center;
 }
 .more-wrapper .more-modal > div:hover {
   background: #e0dede;
