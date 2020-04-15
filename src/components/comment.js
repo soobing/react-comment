@@ -31,7 +31,14 @@ export default function comment({ replyCallback, item }) {
             key: 'value',
             value: e.target.value
           }
-        })} />
+        })}
+      onKeyDown={(e) => {
+        if (e.keyCode == 13 && !e.shiftKey) {
+          // setIsEditMode(false);
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }} />
     <div>
       <div>좋아요</div>
       {replyCallback && <div onClick={replyCallback}>답글달기</div>}
