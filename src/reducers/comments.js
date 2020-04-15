@@ -2,17 +2,17 @@ import * as types from '../actions'
 
 const initialState = {
   data: [
-    {
-      id: new Date().valueOf(),
-      value: '우와 예쁘다',
-      like: false,
-      likeCount: 0,
-      parentId: null,
-      height: '31px',
-      isEdit: false,
-      showMore: false,
-      showReplyTextarea: false
-    },
+    // {
+    //   id: new Date().valueOf(),
+    //   value: '우와 예쁘다',
+    //   like: false,
+    //   likeCount: 0,
+    //   parentId: null,
+    //   height: '31px',
+    //   isEdit: false,
+    //   showMore: false,
+    //   showReplyTextarea: false
+    // },
   ]
 }
 
