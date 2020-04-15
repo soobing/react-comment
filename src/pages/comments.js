@@ -27,7 +27,13 @@ export default function commentsPage() {
   })
 
   const [showReplyTextarea, setShowReplyTextarea] = useState([...Array(map.get('root').length).fill(false)]);
-  console.log('map', map)
+  const replyCallback = (rootIndex) => {
+    setShowReplyTextarea(showReplyTextarea.map((flag, idx) => {
+      if (idx === rootIndex) return true;
+      else return flag
+    }))
+    document.getElementById('reply-' + rootIndex).focus();
+  }
   return <div className='wrapper'>
     <img className='post' src={postImg} />
     <TextArea item={null}
@@ -53,12 +59,7 @@ export default function commentsPage() {
     {
       map.get('root').map((item, index) => {
         return <div key={index}>
-          <Comment item={item} replyCallback={() => {
-            setShowReplyTextarea(showReplyTextarea.map((flag, idx) => {
-              if (idx === index) return !flag;
-              else return flag
-            }))
-          }} />
+          <Comment item={item} replyCallback={() => replyCallback(index)} />
           <div className='child-comment'>
             {
               map.get(item.id) && <div className='count'><img src={curveArrow} alt='답글' />답글 {map.get(item.id).length}개</div>
@@ -66,13 +67,15 @@ export default function commentsPage() {
             {
               map.get(item.id) &&
               map.get(item.id)
-                .map((child, index) => <Comment key={'child_' + index}
+                .map((child, childIndex) => <Comment key={'child_' + childIndex}
                   item={child}
-                  replyCallback={null} />)
+                  replyCallback={() => replyCallback(index)} />)
             }
             {
               showReplyTextarea[index] ?
-                <TextArea item={null}
+                <TextArea
+                  id={'reply-' + index}
+                  item={null}
                   autoFocus={true}
                   onKeyDown={(e) => {
                     if (e.keyCode == 13 && !e.shiftKey) {
