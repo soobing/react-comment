@@ -8,7 +8,8 @@ const initialState = {
       like: false,
       likeCount: 0,
       parentId: null,
-      height: '31px'
+      height: '31px',
+      isEdit: false
     },
     {
       id: new Date().valueOf() + 1,
@@ -16,7 +17,8 @@ const initialState = {
       like: false,
       likeCount: 0,
       parentId: null,
-      height: '31px'
+      height: '31px',
+      isEdit: false
     },
     {
       id: new Date().valueOf() + 2,
@@ -24,7 +26,8 @@ const initialState = {
       like: false,
       likeCount: 0,
       parentId: null,
-      height: '31px'
+      height: '31px',
+      isEdit: false
     }
   ]
 }

@@ -13,14 +13,27 @@ export default function comment({ replyCallback, item }) {
       setShowMore(false)
     }
   }
+  const setEditMode = (flag) => {
+    dispatch({
+      type: types.COMMENT_SET_VALUE,
+      data: {
+        id: item.id,
+        key: 'isEdit',
+        value: flag
+      }
+    })
+  }
   useEffect(() => {
     window.addEventListener('click', onWindowClick, false);
     return () => {
       window.removeEventListener('click', onWindowClick, false);
     }
   }, [])
+  console.log(item)
   return <div className='comment'>
     <TextArea
+      className={item.isEdit ? 'default-comment isEdit' : 'default-comment'}
+      id={item.id}
       item={item}
       value={item.value}
       onChange={(e) =>
@@ -32,9 +45,16 @@ export default function comment({ replyCallback, item }) {
             value: e.target.value
           }
         })}
+      readOnly={!item.isEdit}
+      onBlur={() => {
+        if (item.isEdit) {
+          setEditMode(false)
+        }
+      }}
       onKeyDown={(e) => {
-        if (e.keyCode == 13 && !e.shiftKey) {
-          // setIsEditMode(false);
+        if (e.keyCode == 13 && !e.shiftKey && item.isEdit) {
+          document.getElementById(item.id).blur();
+          setEditMode(false)
           e.preventDefault();
           e.stopPropagation();
         }
@@ -47,7 +67,10 @@ export default function comment({ replyCallback, item }) {
         {
           showMore ?
             <div className='more-modal'>
-              <div>수정하기...</div>
+              <div onClick={() => {
+                document.getElementById(item.id).focus();
+                setEditMode(true)
+              }}>수정하기...</div>
               <div onClick={(e) => {
                 dispatch({
                   type: types.COMMENT_DELETE,
