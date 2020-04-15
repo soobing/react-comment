@@ -50,11 +50,10 @@ export default function commentsPage() {
           e.stopPropagation();
         }
       }} />
-      ------------------------
-      {
+    {
       map.get('root').map((item, index) => {
         return <div key={index}>
-          <Orange item={item} replyCallback={() => {
+          <Comment item={item} replyCallback={() => {
             setShowReplyTextarea(showReplyTextarea.map((flag, idx) => {
               if (idx === index) return !flag;
               else return flag
@@ -67,7 +66,7 @@ export default function commentsPage() {
             {
               map.get(item.id) &&
               map.get(item.id)
-                .map((child, index) => <Orange key={'child_' + index}
+                .map((child, index) => <Comment key={'child_' + index}
                   item={child}
                   replyCallback={null} />)
             }
@@ -97,31 +96,6 @@ export default function commentsPage() {
             }
           </div>
         </div>
-      })
-    }
-      -------------------------
-    {
-      map.get('root').map((item, index) => {
-        return <Comment key={index}
-          item={item}
-          reply={map.get(item.id) === undefined ? [] : map.get(item.id)}
-          onChangeValue={(e) =>
-            dispatch({
-              type: types.COMMENT_SET_VALUE,
-              data: {
-                id: item.id,
-                key: 'value',
-                value: e.target.value
-              }
-            })}
-          onClickDelete={(e) => {
-            dispatch({
-              type: types.COMMENT_DELETE,
-              data: {
-                id: item.id
-              }
-            })
-          }} />
       })
     }
     <div className='footer'>
