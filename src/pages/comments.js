@@ -12,6 +12,7 @@ export default function commentsPage() {
   const { data } = comments;
   const dispatch = useDispatch();
 
+  // 댓글(root)과 대댓글 분리하는 작업
   const map = new Map();
   map.set('root', [])
   data.forEach((item, index) => {
@@ -26,6 +27,7 @@ export default function commentsPage() {
     }
   })
 
+  // COMMENT_SET_VALUE 액션의 wrapper
   const setValue = (id, key, value) => {
     dispatch({
       type: types.COMMENT_SET_VALUE,
@@ -36,6 +38,7 @@ export default function commentsPage() {
       }
     })
   }
+  // 답글달기 클릭시 호출되는 함수
   const replyCallback = (id) => {
     setValue(id, 'showReplyTextarea', true)
     const replyEl = document.getElementById('reply-' + id);

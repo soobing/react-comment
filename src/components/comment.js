@@ -8,6 +8,7 @@ import like from '../assets/images/like.png';
 
 export default function comment({ replyCallback, item }) {
   const dispatch = useDispatch();
+  // 삭제하기, 수정하기 모달을 없애기 위한 click 이벤트 핸들러
   const onWindowClick = (event) => {
     if (!event.target.classList.contains('more')) {
       dispatch({
@@ -16,6 +17,14 @@ export default function comment({ replyCallback, item }) {
       })
     }
   }
+  useEffect(() => {
+    window.addEventListener('click', onWindowClick, false);
+    return () => {
+      window.removeEventListener('click', onWindowClick, false);
+    }
+  }, [])
+
+  // COMMENT_SET_VALUE 액션을 위한 wrapper
   const setValue = (key, value) => {
     dispatch({
       type: types.COMMENT_SET_VALUE,
@@ -26,28 +35,13 @@ export default function comment({ replyCallback, item }) {
       }
     })
   }
-  useEffect(() => {
-    window.addEventListener('click', onWindowClick, false);
-    return () => {
-      window.removeEventListener('click', onWindowClick, false);
-    }
-  }, [])
-  console.log(item)
   return <div className='comment'>
     <TextArea
       className={item.isEdit ? 'default-comment isEdit' : 'default-comment'}
       id={item.id}
       item={item}
       value={item.value}
-      onChange={(e) =>
-        dispatch({
-          type: types.COMMENT_SET_VALUE,
-          data: {
-            id: item.id,
-            key: 'value',
-            value: e.target.value
-          }
-        })}
+      onChange={(e) => setValue('value', e.target.value)}
       readOnly={!item.isEdit}
       onBlur={() => {
         if (item.isEdit) {
