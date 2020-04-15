@@ -84,12 +84,14 @@ export default function comment({ replyCallback, item }) {
                 setValue('isEdit', true);
               }}>수정하기...</div>
               <div onClick={(e) => {
-                dispatch({
-                  type: types.COMMENT_DELETE,
-                  data: {
-                    id: item.id
-                  }
-                })
+                if (confirm("댓글을 삭제하시겠습니까?")) {
+                  dispatch({
+                    type: types.COMMENT_DELETE,
+                    data: {
+                      id: item.id
+                    }
+                  })
+                }
               }}>삭제하기...</div>
             </div>
             : null

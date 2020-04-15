@@ -21,7 +21,7 @@ export default function textarea(props) {
       e.target.style.height = (e.target.scrollHeight) + "px";
     }
   }
-  return <textarea className='default-comment'
+  return <textarea className='default-comment textarea'
     {...props}
     style={item ? { height: item.height } : {}}
     placeholder='댓글을 입력하세요..'

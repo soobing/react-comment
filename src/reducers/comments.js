@@ -60,18 +60,11 @@ const comments = (state = initialState, action) => {
         ]
       }
     case types.COMMENT_DELETE:
-      let index = -1;
-      for (let i = 0; i < state.data.length; i++) {
-        if (state.data[i].id === action.data.id) {
-          index = i;
-        }
-      }
+      const _data = state.data.filter(item => item.id !== action.data.id &&
+        item.parentId !== action.data.id);
       return {
         ...state,
-        data: [
-          ...state.data.slice(0, index),
-          ...state.data.slice(index + 1)
-        ]
+        data: _data
       }
     default:
       return state;
