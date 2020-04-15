@@ -20,3 +20,11 @@ body {
 .child-comment {
   margin-left: 25px;
 }
+.child-comment > .count {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.child-comment > .count > img {
+  width: 12px;
+  margin-right: 4px;
+}

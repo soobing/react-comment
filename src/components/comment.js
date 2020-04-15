@@ -5,7 +5,6 @@ import * as types from '../actions';
 import TextArea from '../components/textarea';
 import '../assets/comment.css'
 import more from '../assets/images/more.png'
-
 export default function comment({ replyCallback, item }) {
   const [showMore, setShowMore] = useState(false);
   const dispatch = useDispatch();

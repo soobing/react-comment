@@ -4,6 +4,7 @@ import TextArea from '../components/textarea';
 import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 import postImg from '../assets/images/post.png'
+import curveArrow from '../assets/images/curve-arrow.png'
 import '../assets/style.css'
 
 export default function commentsPage() {
@@ -58,10 +59,10 @@ export default function commentsPage() {
               else return flag
             }))
           }} />
-          {
-            map.get(item.id) && <div>답글 {map.get(item.id).length}개</div>
-          }
           <div className='child-comment'>
+            {
+              map.get(item.id) && <div className='count'><img src={curveArrow} alt='답글' />답글 {map.get(item.id).length}개</div>
+            }
             {
               map.get(item.id) &&
               map.get(item.id)
@@ -99,5 +100,5 @@ export default function commentsPage() {
     }
     <div className='footer'>
     </div>
-  </div>
+  </div >
 }
