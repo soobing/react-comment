@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as types from '../actions';
 
 import TextArea from '../components/textarea';
-import more from '../assets/images/more.png'
+import more from '../assets/images/more.png';
+import like from '../assets/images/like.png';
+
 export default function comment({ replyCallback, item }) {
   const [showMore, setShowMore] = useState(false);
   const dispatch = useDispatch();
@@ -12,13 +14,13 @@ export default function comment({ replyCallback, item }) {
       setShowMore(false)
     }
   }
-  const setEditMode = (flag) => {
+  const setValue = (key, value) => {
     dispatch({
       type: types.COMMENT_SET_VALUE,
       data: {
         id: item.id,
-        key: 'isEdit',
-        value: flag
+        key: key,
+        value: value
       }
     })
   }
@@ -47,19 +49,30 @@ export default function comment({ replyCallback, item }) {
       readOnly={!item.isEdit}
       onBlur={() => {
         if (item.isEdit) {
-          setEditMode(false)
+          setValue('isEdit', false);
         }
       }}
       onKeyDown={(e) => {
         if (e.keyCode == 13 && !e.shiftKey && item.isEdit) {
           document.getElementById(item.id).blur();
-          setEditMode(false)
+          setValue('isEdit', false);
           e.preventDefault();
           e.stopPropagation();
         }
       }} />
+    {
+      item.likeCount > 0 ?
+        <div className='comment-like'>
+          <img src={like} />
+          <span>{item.likeCount}</span>
+        </div>
+        : null
+    }
     <div className='comment-function'>
-      <div>좋아요</div>
+      <div onClick={() => {
+        setValue('like', !item.like);
+        setValue('likeCount', !item.like ? item.likeCount + 1 : item.likeCount - 1);
+      }}>좋아요</div>
       {replyCallback && <div onClick={replyCallback}>답글달기</div>}
       <div className='more-wrapper'>
         <img src={more} alt='more' className='more' onClick={(e) => setShowMore(!showMore)} />
@@ -68,7 +81,7 @@ export default function comment({ replyCallback, item }) {
             <div className='more-modal'>
               <div onClick={() => {
                 document.getElementById(item.id).focus();
-                setEditMode(true)
+                setValue('isEdit', true);
               }}>수정하기...</div>
               <div onClick={(e) => {
                 dispatch({
